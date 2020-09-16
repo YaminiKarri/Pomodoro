@@ -25,7 +25,7 @@ reset.addEventListener("click", function () {
   bm.innerText = 05;
   bs.innerText = "00";
 
-  document.getElementById("counter").innerText++;
+  document.getElementById("counter").innerText = "0";
   stopInterval();
   startTimer = undefined;
 });
@@ -41,7 +41,7 @@ function timer() {
   if (ws.innerText != 0) {
     ws.innerText--;
   } else if (wm.innerText != 0 && ws.innerText == 0) {
-    ws.innerText = 59;
+    ws.innerText = 1;
     wm.innerText--;
   }
   //break timer count down//
@@ -49,7 +49,7 @@ function timer() {
     if (bs.innerText != 0) {
       bs.innerText--;
     } else if (bm.innerText != 0 && bs.innerText == 0) {
-      bs.innerText = 59;
+      bs.innerText = 0;
       bm.innerText--;
     }
   }
@@ -75,3 +75,23 @@ function timer() {
 function stopInterval() {
   clearInterval(startTimer);
 }
+
+//to-do list
+
+let addToDoButton = document.getElementById("addToDo");
+let toDoContainer = document.getElementById("toDoContainer");
+let inputField = document.getElementById("inputField");
+
+addToDoButton.addEventListener("click", function () {
+  var paragraph = document.createElement("p");
+  paragraph.classList.add("paragraph-styling");
+  paragraph.innerText = inputField.value;
+  toDoContainer.appendChild(paragraph);
+  inputField.value = "";
+  paragraph.addEventListener("click", function () {
+    paragraph.style.textDecoration = "line-through";
+  });
+  paragraph.addEventListener("dblclick", function () {
+    toDoContainer.removeChild(paragraph);
+  });
+});
